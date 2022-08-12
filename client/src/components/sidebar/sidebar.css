@@ -1,0 +1,9 @@
+.sidebar {
+  flex: 0.5;
+  height: calc(100vh - 80px);
+  position: sticky;
+  top: 80px;
+}
+
+  
+ 
