@@ -16,6 +16,7 @@ import { AuthContext } from "./context/AuthContext";
 import MentorHome from "./components/MentorHome";
 import Messenger from "./pages/messenger/Messenger";
 import MentorMessenger from "./pages/mentor messenger/MentorMessenger";
+import Guest from "./pages/guest page/Guest";
 
 function App() {
   const { user, mentor, admin } = useContext(AuthContext);
@@ -25,6 +26,7 @@ function App() {
         <Routes>
           {/* User Pages */}
           <Route path="/" element={user ? <Home /> : <Register />} />
+          <Route path="/guest" element={<Guest />} />
           <Route
             path="/userlogin"
             element={user ? <Navigate to="/" /> : <Login />}

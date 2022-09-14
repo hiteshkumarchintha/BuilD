@@ -77,6 +77,15 @@ export default function Login() {
                 Become a Mentor
               </Link>
             </button>
+
+            <button className="loginRegisterButton">
+              <Link
+                to="/guest"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                Login as Guest
+              </Link>
+            </button>
           </form>
         </div>
       </div>

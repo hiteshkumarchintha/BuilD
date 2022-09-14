@@ -115,7 +115,16 @@ export default function Register() {
                 style={{ textDecoration: "none", color: "white" }}
               >
                 Log Into Account
-              </Link>{" "}
+              </Link>
+            </button>
+
+            <button className="loginRegisterButton">
+              <Link
+                to="/guest"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                Login as Guest
+              </Link>
             </button>
           </form>
         </div>
