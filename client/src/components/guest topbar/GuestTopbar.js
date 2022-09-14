@@ -7,11 +7,13 @@ export default function GuestTopbar() {
     <header className="header" id="header">
       <nav className="nav navcontainer">
         <div className="navlogo">
-          <img
-            className="navimg"
-            src={require("../../assets/Modified Logo.png")}
-            alt="Logo"
-          />
+          <Link to="/guest" className="nav__link active-link">
+            <img
+              className="navimg"
+              src={require("../../assets/Modified Logo.png")}
+              alt="Logo"
+            />
+          </Link>
         </div>
 
         <div className="nav__menu" id="nav-menu">
@@ -31,17 +33,8 @@ export default function GuestTopbar() {
                 Login
               </Link>
             </li>
-            {/* <li className="nav__item">
-              <Link to="/messenger" className="nav__link">
-                Chat
-              </Link>
-            </li> */}
           </ul>
         </div>
-
-        {/* <button onClick={() => logOut()} className="navbutton button__header">
-          Sign out
-        </button> */}
       </nav>
     </header>
   );

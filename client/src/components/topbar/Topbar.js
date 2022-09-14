@@ -18,11 +18,13 @@ export default function Topbar() {
     <header className="header" id="header">
       <nav className="nav navcontainer">
         <div className="navlogo">
-          <img
-            className="navimg"
-            src={require("../../assets/Modified Logo.png")}
-            alt="Logo"
-          />
+          <Link to="/" className="nav__link active-link">
+            <img
+              className="navimg"
+              src={require("../../assets/Modified Logo.png")}
+              alt="Logo"
+            />
+          </Link>
         </div>
 
         <div className="nav__menu" id="nav-menu">
