@@ -4,6 +4,7 @@ import { useContext, useRef } from "react";
 import { loginCall } from "../apiCalls";
 import { AuthContext } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
+import swal from "sweetalert";
 
 export default function Login() {
   const username = useRef();
@@ -12,11 +13,13 @@ export default function Login() {
 
   const handleClick = (e) => {
     e.preventDefault();
+
     loginCall(
       { username: username.current.value, password: password.current.value },
       dispatch
     );
   };
+
   return (
     <div className="login">
       <div className="loginWrapper">
@@ -38,6 +41,7 @@ export default function Login() {
               ref={username}
               required
             />
+
             <input
               placeholder="Password"
               type="password"
@@ -45,6 +49,7 @@ export default function Login() {
               ref={password}
               required
             />
+            <span className="errorMsg">{error}</span>
             <button className="loginButton" type="submit">
               {isFetching ? "...Loding" : "Log In"}
             </button>

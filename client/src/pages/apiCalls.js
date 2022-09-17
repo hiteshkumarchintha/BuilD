@@ -9,7 +9,7 @@ export const loginCall = async (userCredentials, dispatch) => {
     );
     dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
   } catch (err) {
-    dispatch({ type: "LOGIN_FAILURE", payload: err });
+    dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
   }
 };
 
@@ -22,7 +22,10 @@ export const mentorloginCall = async (mentorCredentials, mentorDispatch) => {
     );
     mentorDispatch({ type: "MENTOR_LOGIN_SUCCESS", payload: res.data });
   } catch (err) {
-    mentorDispatch({ type: "MENTOR_LOGIN_FAILURE", payload: err });
+    mentorDispatch({
+      type: "MENTOR_LOGIN_FAILURE",
+      payload: err.response.data,
+    });
   }
 };
 
@@ -35,6 +38,6 @@ export const adminloginCall = async (adminCredentials, adminDispatch) => {
     );
     adminDispatch({ type: "ADMIN_LOGIN_SUCCESS", payload: res.data });
   } catch (err) {
-    adminDispatch({ type: "ADMIN_LOGIN_FAILURE", payload: err });
+    adminDispatch({ type: "ADMIN_LOGIN_FAILURE", payload: err.response.data });
   }
 };

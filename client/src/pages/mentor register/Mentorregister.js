@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import "./mentorregister.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 export default function Mentorregister() {
@@ -12,6 +12,7 @@ export default function Mentorregister() {
   const expertise = useRef();
   const ydesc = useRef();
   const navigate = useNavigate();
+  const [msg, setMsg] = useState("");
 
   const { user, isFetching, error, mentorDispatch } = useContext(AuthContext);
 
@@ -26,8 +27,14 @@ export default function Mentorregister() {
       ydesc: ydesc.current.value,
     };
     try {
-      await axios.post("http://localhost:8800/api/mentorAuth/register", mentor);
-      navigate("/mentorlogin");
+      const res = await axios.post(
+        "http://localhost:8800/api/mentorAuth/register",
+        mentor
+      );
+      setMsg(res.data);
+      if (!(typeof res.data._id === "undefined")) {
+        navigate("/mentorlogin");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -85,6 +92,7 @@ export default function Mentorregister() {
               ref={ydesc}
               required
             />
+            <span className="errorMsg">{msg}</span>
             <button className="loginButton" type="submit">
               Register
             </button>

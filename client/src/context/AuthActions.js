@@ -7,8 +7,9 @@ export const LoginSuccess = (user) => ({
   payload: user,
 });
 
-export const LoginFailure = () => ({
+export const LoginFailure = (error) => ({
   type: "LOGIN_FAILURE",
+  payload: error,
 });
 
 export const MentorLoginStart = (mentorCredentials) => ({
@@ -20,8 +21,9 @@ export const MentorLoginSuccess = (mentor) => ({
   payload: mentor,
 });
 
-export const MentorLoginFailure = () => ({
+export const MentorLoginFailure = (error) => ({
   type: "MENTOR_LOGIN_FAILURE",
+  payload: error,
 });
 
 export const AdminLoginStart = (adminCredentials) => ({
@@ -33,6 +35,7 @@ export const AdminLoginSuccess = (admin) => ({
   payload: admin,
 });
 
-export const AdminLoginFailure = () => ({
+export const AdminLoginFailure = (error) => ({
   type: "ADMIN_LOGIN_FAILURE",
+  payload: error,
 });

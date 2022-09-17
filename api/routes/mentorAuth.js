@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const Mentor = require("../models/Mentor");
 const bcrypt = require("bcrypt");
+const { ValidMentor } = require("../validation/mentorRegisterValidation");
 
 //REGISTER
 router.post("/register", async (req, res) => {
@@ -8,6 +9,11 @@ router.post("/register", async (req, res) => {
     //generate new password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
+
+    const value = await ValidMentor.validate(req.body);
+    if (value.error) {
+      return res.json(value.error.details[0].message);
+    }
 
     //create new mentor
     const newMentor = new Mentor({

@@ -9,7 +9,7 @@ import { AuthContext } from "../../context/AuthContext";
 export default function Mentorlogin() {
   const username = useRef();
   const password = useRef();
-  const { user, isFetching, error, mentorDispatch } = useContext(AuthContext);
+  const { mentorError, mentorDispatch } = useContext(AuthContext);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -18,6 +18,7 @@ export default function Mentorlogin() {
       mentorDispatch
     );
   };
+
   return (
     <div className="login">
       <div className="loginWrapper">
@@ -50,6 +51,7 @@ export default function Mentorlogin() {
               ref={password}
               required
             />
+            <span className="errorMsg">{mentorError}</span>
             <button className="loginButton" type="submit">
               Mentor Login
             </button>

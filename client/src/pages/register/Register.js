@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { Link, useNavigate } from "react-router-dom";
 import "./register.css";
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import { loginCall } from "../apiCalls";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
@@ -16,6 +16,7 @@ export default function Register() {
   const dob = useRef();
   const ydesc = useRef();
   const navigate = useNavigate();
+  const [msg, setMsg] = useState("");
 
   const { user, isFetching, error, dispatch } = useContext(AuthContext);
 
@@ -32,12 +33,21 @@ export default function Register() {
       ydesc: ydesc.current.value,
     };
     try {
-      await axios.post("http://localhost:8800/api/userAuth/register", user);
-      navigate("/userlogin");
+      const res = await axios.post(
+        "http://localhost:8800/api/userAuth/register",
+        user
+      );
+
+      setMsg(res.data);
+      // console.log(typeof res.data._id === "undefined");
+      if (!(typeof res.data._id === "undefined")) {
+        navigate("/userlogin");
+      }
     } catch (error) {
       console.log(error);
     }
   };
+
   return (
     <div className="login">
       <div className="loginWrapper">
@@ -59,12 +69,14 @@ export default function Register() {
               ref={name}
               required
             />
+
             <input
               placeholder="Username"
               className="loginInput"
               ref={username}
               required
             />
+
             <input
               placeholder="Password"
               type="password"
@@ -72,6 +84,7 @@ export default function Register() {
               ref={password}
               required
             />
+
             <input
               placeholder="Email"
               type="email"
@@ -79,30 +92,32 @@ export default function Register() {
               ref={email}
               required
             />
+
             <input
               placeholder="Favorite Book"
               className="loginInput"
               ref={favBook}
               required
             />
+
             <input
               placeholder="Favorite Movie Quote"
               className="loginInput"
               ref={movieQuote}
               required
             />
-            <input
-              placeholder="Date Of Birth"
-              className="loginInput"
-              ref={dob}
-              required
-            />
+
+            <input type="date" className="loginInput" ref={dob} required />
+
             <input
               placeholder="Why here?"
               className="loginInput"
               ref={ydesc}
               required
             />
+
+            <span className="errorMsg">{msg}</span>
+
             <button className="loginButton" type="submit">
               {isFetching ? "...Loding" : "Register"}
             </button>

@@ -33,7 +33,7 @@ export default function Feed() {
         <div className="carousel-inner">
           <div className="carousel-item active" data-bs-interval="10000">
             <img
-              src={require("../../assets/saksham-gangwar-J4aLKW3T0FE-unsplash (1).jpg")}
+              src={require("../../assets/1stpic.jpg")}
               className="d-block w-100 carouselimg"
               alt="..."
             />
@@ -41,7 +41,7 @@ export default function Feed() {
           </div>
           <div className="carousel-item" data-bs-interval="2000">
             <img
-              src={require("../../assets/saksham-gangwar-J4aLKW3T0FE-unsplash (1).jpg")}
+              src={require("../../assets/2ndpic.jpg")}
               className="d-block w-100 carouselimg"
               alt="..."
             />
@@ -49,7 +49,7 @@ export default function Feed() {
           </div>
           <div className="carousel-item">
             <img
-              src={require("../../assets/saksham-gangwar-J4aLKW3T0FE-unsplash (1).jpg")}
+              src={require("../../assets/3rdpic.jpg")}
               className="d-block w-100 carouselimg"
               alt="..."
             />

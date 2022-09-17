@@ -1,5 +1,4 @@
 const MentorAuthReducer = (state, action) => {
-  console.log(action.payload);
   switch (action.type) {
     case "MENTOR_LOGIN_START":
       return {
@@ -17,7 +16,7 @@ const MentorAuthReducer = (state, action) => {
       return {
         mentor: null,
         mentorIsFetching: false,
-        mentorError: true,
+        mentorError: action.payload,
       };
     case "MENTOR_LOGOUT":
       return {

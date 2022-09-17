@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const { ValidUser } = require("../validation/registerValidation");
 
 //REGISTER
 router.post("/register", async (req, res) => {
@@ -8,6 +9,11 @@ router.post("/register", async (req, res) => {
     //generate new password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
+
+    const value = await ValidUser.validate(req.body);
+    if (value.error) {
+      return res.json(value.error.details[0].message);
+    }
 
     //create new user
     const newUser = new User({
@@ -34,7 +40,7 @@ router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ username: req.body.username });
     if (!user) {
-      return res.status(404).json("user not found");
+      return res.status(404).json("User Not Found");
     }
 
     const validPassword = await bcrypt.compare(
@@ -42,7 +48,7 @@ router.post("/login", async (req, res) => {
       user.password
     );
     if (!validPassword) {
-      return res.status(400).json("wrong password");
+      return res.status(400).json("Wrong Password");
     }
 
     const isAuthorized = await User.findOne({
@@ -52,7 +58,7 @@ router.post("/login", async (req, res) => {
     if (!isAuthorized) {
       return res
         .status(400)
-        .json("Wait for the acceptance of your credentials by admin...");
+        .json("Wait for the acceptance of your credentials by ADMIN...");
     }
 
     res.status(200).json(user);
