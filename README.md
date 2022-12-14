@@ -1,7 +1,10 @@
 # BuilD
 BuilD is a one-on-one e-learning chat application developed on MERN stack. This application enables a student to directly connect to a mentor in regard to a particular field of study via chat. The main modules of the app are as follows:
+
 Admin - who is responsible for registering users into the platform, validating their access and maintaining the application’s database.
+
 User (Mentor) - mentions a field of expertise upon registration and connects with students as allocated by the admin.
+
 User (Student) - chooses a field of study and connects with a mentor allocated by the admin.
 
 A glimpse of our project :
